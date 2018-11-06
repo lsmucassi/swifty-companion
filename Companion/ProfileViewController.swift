@@ -29,8 +29,31 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        nameLabel.text = ""
+        phoneLabel.text = ""
+        walletLabel.text = ""
+        correctionLabel.text = ""
+        levelLabel.text = ""
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        activity.startAnimating()
+        
+        
         execute(after: 3) {
+            if self.data["image_url"].url != nil || self.data["cursus_users"][0]["level"].stringValue != "" {
+                self.activity.isHidden = true
+                self.activity.stopAnimating()
+            } else {
+                self.performSegue(withIdentifier: "42Segue", sender: self)
+            }
             self.user = User(
                 username: self.data["login"].stringValue,
                 phone: self.data["phone"].stringValue,
@@ -39,14 +62,13 @@ class ProfileViewController: UIViewController {
                 level: self.data["cursus_users"][0]["level"].floatValue,
                 image: self.data["image_url"].url!
             )
-
+            
             self.nameLabel.text = self.user.username
             self.phoneLabel.text = "Phone: " + self.user.phone
             self.walletLabel.text = "Wallet: " + self.user.wallet
             self.correctionLabel.text = "Correction: " + self.user.correction
             self.levelLabel.text = "Level: \(self.user.level)"
-//            self.progressLevel.progress = progress)
-            self.progressLevel.progress = self.user.level - Float(Int(self.user.level))
+            self.progressLevel.progress = (self.user.level - Float(Int(self.user.level)))
             
             do {
                 let data = try Data(contentsOf: self.user.image)
@@ -59,8 +81,5 @@ class ProfileViewController: UIViewController {
             self.userImge.layer.cornerRadius = 40
             self.userImge.clipsToBounds = true
         }
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
 }

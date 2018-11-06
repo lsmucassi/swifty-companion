@@ -13,6 +13,7 @@ class _2ViewController: UIViewController {
     
     @IBOutlet weak var skillTableView: UITableView!
     @IBOutlet weak var projectTableView: UITableView!
+    @IBOutlet weak var actionIndicator: UIActivityIndicatorView!
     
     var skills: [Skill] = []
     var projects: [Project] = []
@@ -28,6 +29,7 @@ class _2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        actionIndicator.startAnimating()
         skillTableView.delegate = self
         skillTableView.dataSource = self
         
@@ -35,11 +37,13 @@ class _2ViewController: UIViewController {
         projectTableView.dataSource = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+    }
+    
     func loadData() {
         dispatcGroup.enter()
         reload(after: 2) {
             if self.data != nil {
-//                print(self.data["cursus_users"][0]["skills"])
                 self.data["cursus_users"][0]["skills"].array?.forEach({
                     (_skill) in
                     let skill = Skill(name: _skill["name"].stringValue, level: _skill["level"].floatValue)
@@ -51,8 +55,11 @@ class _2ViewController: UIViewController {
                     self.projects.append(project)
                     })
                 
+                self.actionIndicator.stopAnimating()
+                self.actionIndicator.isHidden = true
                 self.skillTableView.reloadData()
                 self.projectTableView.reloadData()
+                
                 self.dispatcGroup.leave()
             }
         }

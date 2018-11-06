@@ -15,8 +15,11 @@ class ProjectCell: UITableViewCell {
     
     func setProject(name: String, grade: String, valid: Bool) {
         projectName.text = name
-        projectGrade.text = grade + "%"
-        
+        if grade == "" {
+            projectGrade.text = "0%"
+        } else {
+            projectGrade.text = grade + "%"
+        }
         if valid == false {
             projectGrade.textColor = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
         } else {

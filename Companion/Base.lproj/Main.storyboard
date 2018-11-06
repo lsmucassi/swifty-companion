@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgI-1j-uSD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgI-1j-uSD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +31,7 @@
                                 <rect key="frame" x="126" y="318" width="123" height="30"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
-                                    <segue destination="Mqz-Kp-kck" kind="show" identifier="segue" id="pa3-bg-gZO"/>
+                                    <action selector="getUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ccO-h5-u6A"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -56,8 +55,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="42" id="EcL-FR-kil"/>
                     <connections>
-                        <outlet property="searchButton" destination="ZV6-ja-CBT" id="Mbx-SH-kZk"/>
                         <outlet property="usernameTextBox" destination="4Z4-6V-eqA" id="tHI-Vc-h2B"/>
+                        <segue destination="Mqz-Kp-kck" kind="show" identifier="segue" id="3rY-6T-seE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -194,6 +193,13 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yWF-7K-7Ey">
+                                                <rect key="frame" x="162.5" y="443" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="1tU-K4-hjy"/>
+                                                    <constraint firstAttribute="width" constant="50" id="du5-aN-4To"/>
+                                                </constraints>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -202,8 +208,10 @@
                                             <constraint firstItem="p9B-Za-KhW" firstAttribute="top" secondItem="KP7-aj-4oH" secondAttribute="bottom" id="EwY-Zy-aVm"/>
                                             <constraint firstAttribute="bottom" secondItem="DNN-KZ-ui1" secondAttribute="bottom" constant="184" id="Qzb-3j-pfJ"/>
                                             <constraint firstItem="DNN-KZ-ui1" firstAttribute="top" secondItem="c4i-K7-96P" secondAttribute="bottom" id="TPX-TF-XYs"/>
+                                            <constraint firstItem="yWF-7K-7Ey" firstAttribute="centerX" secondItem="xJ9-Ar-aMA" secondAttribute="centerX" id="Xbt-ng-a35"/>
                                             <constraint firstItem="bHh-pI-O9o" firstAttribute="top" secondItem="p9B-Za-KhW" secondAttribute="bottom" id="ZFz-4h-qRa"/>
                                             <constraint firstItem="KP7-aj-4oH" firstAttribute="leading" secondItem="xJ9-Ar-aMA" secondAttribute="leading" id="eN1-mN-VMI"/>
+                                            <constraint firstItem="yWF-7K-7Ey" firstAttribute="centerY" secondItem="xJ9-Ar-aMA" secondAttribute="centerY" id="eQV-dB-r5P"/>
                                             <constraint firstAttribute="trailing" secondItem="KP7-aj-4oH" secondAttribute="trailing" id="kGB-N5-hMs"/>
                                             <constraint firstItem="DNN-KZ-ui1" firstAttribute="trailing" secondItem="c4i-K7-96P" secondAttribute="trailing" id="nth-pf-9kL"/>
                                             <constraint firstItem="bHh-pI-O9o" firstAttribute="leading" secondItem="xJ9-Ar-aMA" secondAttribute="leading" id="o1o-Ow-l7A"/>
@@ -242,6 +250,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
+                        <outlet property="actionIndicator" destination="yWF-7K-7Ey" id="EXJ-iD-Lct"/>
                         <outlet property="projectTableView" destination="DNN-KZ-ui1" id="JAg-zt-ls8"/>
                         <outlet property="skillTableView" destination="IOa-Qi-J6c" id="PDw-i5-7Pt"/>
                     </connections>
@@ -323,6 +332,10 @@
                                     <constraint firstAttribute="width" constant="92" id="Dos-xk-8tq"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a7q-r5-Bzq">
+                                <rect key="frame" x="177" y="67" width="20" height="20"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -334,6 +347,7 @@
                             <constraint firstItem="pVT-gd-AUC" firstAttribute="top" secondItem="cGu-US-rFs" secondAttribute="bottom" constant="3" id="6vk-3a-Xad"/>
                             <constraint firstItem="NgX-aE-dcI" firstAttribute="trailing" secondItem="LS5-FQ-enR" secondAttribute="trailing" constant="24" id="7OW-vW-iuQ"/>
                             <constraint firstItem="NgX-aE-dcI" firstAttribute="trailing" secondItem="dRF-op-wck" secondAttribute="trailing" constant="16" id="7uE-Bn-2am"/>
+                            <constraint firstItem="a7q-r5-Bzq" firstAttribute="centerX" secondItem="NgX-aE-dcI" secondAttribute="centerX" id="8nf-xN-KBj"/>
                             <constraint firstItem="vwP-jI-oZo" firstAttribute="top" secondItem="NgX-aE-dcI" secondAttribute="top" constant="20" id="9BO-Mn-vux"/>
                             <constraint firstItem="pVT-gd-AUC" firstAttribute="leading" secondItem="NGh-aM-RcF" secondAttribute="leading" constant="121" id="BvC-Dg-8fm"/>
                             <constraint firstItem="V02-ia-ntR" firstAttribute="leading" secondItem="NGh-aM-RcF" secondAttribute="leading" id="Caz-Rh-MRm"/>
@@ -351,6 +365,7 @@
                             <constraint firstAttribute="trailing" secondItem="V02-ia-ntR" secondAttribute="trailing" id="gsP-Ok-j6D"/>
                             <constraint firstItem="cGu-US-rFs" firstAttribute="top" secondItem="dRF-op-wck" secondAttribute="bottom" constant="8" id="oBK-rX-iXF"/>
                             <constraint firstItem="vwP-jI-oZo" firstAttribute="bottom" secondItem="cGu-US-rFs" secondAttribute="bottom" id="pNK-8E-Wai"/>
+                            <constraint firstItem="a7q-r5-Bzq" firstAttribute="centerY" secondItem="NgX-aE-dcI" secondAttribute="centerY" id="q4H-9G-3P6"/>
                             <constraint firstItem="dRF-op-wck" firstAttribute="leading" secondItem="vwP-jI-oZo" secondAttribute="trailing" constant="59" id="wgt-Dq-QmO"/>
                             <constraint firstItem="rV2-y6-wuo" firstAttribute="leading" secondItem="NGh-aM-RcF" secondAttribute="leading" constant="24" id="y0n-Zj-Y3a"/>
                             <constraint firstItem="LS5-FQ-enR" firstAttribute="top" secondItem="Ipx-e5-9l8" secondAttribute="bottom" constant="8" id="zoQ-ks-6Wu"/>
@@ -359,6 +374,7 @@
                         <viewLayoutGuide key="safeArea" id="NgX-aE-dcI"/>
                     </view>
                     <connections>
+                        <outlet property="activity" destination="a7q-r5-Bzq" id="LHf-zg-mNl"/>
                         <outlet property="correctionLabel" destination="cGu-US-rFs" id="0C3-FR-R2h"/>
                         <outlet property="levelLabel" destination="pVT-gd-AUC" id="XXH-0N-nPW"/>
                         <outlet property="nameLabel" destination="Ipx-e5-9l8" id="3ls-ba-ZR7"/>
