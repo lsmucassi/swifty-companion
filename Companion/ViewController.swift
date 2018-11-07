@@ -10,11 +10,13 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-//var name = "42"
-
 class ViewController: UIViewController {
     
     @IBOutlet weak var usernameTextBox: UITextField!
+    
+    @IBOutlet weak var searchForUser: UIButton!
+    
+    
     var auth = Auth()
     var jsonData: JSON?
     let dispatchGroup = DispatchGroup()
@@ -22,6 +24,11 @@ class ViewController: UIViewController {
     
     @IBAction func getUser(_ sender: Any) {
        searchStudent()
+        searchForUser.isEnabled = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        searchForUser.isEnabled = true
     }
     
      func searchStudent(){
@@ -64,7 +71,7 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { (action) in
-            self.usernameTextBox.text = ""
+            self.searchForUser.isEnabled = true
             alert.dismiss(animated: true, completion: nil)
         }))
         

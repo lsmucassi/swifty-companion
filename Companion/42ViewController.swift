@@ -46,7 +46,7 @@ class _2ViewController: UIViewController {
             if self.data != nil {
                 self.data["cursus_users"][0]["skills"].array?.forEach({
                     (_skill) in
-                    let skill = Skill(name: _skill["name"].stringValue, level: _skill["level"].floatValue)
+                    let skill = Skill(name: _skill["name"].stringValue, level: _skill["level"].floatValue, skillLevel: _skill["level"].stringValue)
                     self.skills.append(skill)
                 })
                 
@@ -90,7 +90,7 @@ extension _2ViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "SkillCell") as! SkillCell
             
-            cell.setSkill(skill: skill.name, progress: skill.level - Float(Int(skill.level)))
+            cell.setSkill(skill: skill.name, progress: skill.level - Float(Int(skill.level)), _skillLevel: skill.skillLevel)
             return cell
         } else {
             let project = projects[indexPath.row]

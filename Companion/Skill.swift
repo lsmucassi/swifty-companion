@@ -11,4 +11,5 @@ import Foundation
 struct Skill {
     var name: String
     var level: Float
+    var skillLevel: String
 }
