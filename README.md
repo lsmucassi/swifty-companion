@@ -5,7 +5,7 @@ Aim of the project is to build an application that will retrieve the information
 https://api.intra.42.fr
 
 To use the app you need to install the necessary pods accomanied by a Podfile on the repo.
-We used two, namely Alamofire and SwiftyJSON, allowing us to swiftly make an api call and manage the returne payload effortlessly.
+We used two, namely Alamofire and SwiftyJSON, allowing us to swiftly make an api call and manage the returned payload effortlessly.
 
 The call only requires to display the User's information, skills, and projects doing with their grades.
 
