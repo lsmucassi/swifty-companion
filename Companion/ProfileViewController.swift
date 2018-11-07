@@ -48,11 +48,12 @@ class ProfileViewController: UIViewController {
         
         
         execute(after: 3) {
+            print(self.data)
             if self.data["image_url"].url != nil || self.data["cursus_users"][0]["level"].stringValue != "" {
                 self.activity.isHidden = true
                 self.activity.stopAnimating()
             } else {
-                self.performSegue(withIdentifier: "42Segue", sender: self)
+                
             }
             self.user = User(
                 username: self.data["login"].stringValue,
